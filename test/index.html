@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GlioJs Test</title>
+</head>
+<body>
+
+  <style>
+    html, body {
+      width: 100vw;
+      height: 100vh;
+    }  
+  </style>
+
+
+  <script src="../src/glio.js"></script>
+
+  <script>
+  
+    glio.init(
+      [ 'top', function () {
+          alert('this is top.');
+        }
+      ],
+      [ 'top-left', function () {
+          alert('this is top-left');
+        }
+      ],
+      [ 'top-right', function () {
+          alert('this is top-right');
+        }
+      ],
+      [ 'bottom-left', function () {
+          alert('this is bottom-left');
+        }
+      ],
+      [ 'bottom-right', function () {
+          alert('this is bottom-right'); 
+        }
+      ] 
+    );
+  </script>
+</body>
+</html>
