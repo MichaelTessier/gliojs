@@ -4,7 +4,9 @@
   "description": "Detects if the mouse of a user leaves the viewport / document borders of your website — and when this happens, trigger your callback",
   "main": "glio.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify src/glio.js -o dist/glio.js",
+    "dev": "watchify src/glio.js -v -o dist/glio.js"
   },
   "keywords": [
     "gliojs",
@@ -15,5 +17,9 @@
   ],
   "homepage": "http://luisvinicius167.github.io/gliojs",
   "author": "Luis Vinícius",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "watchify": "^3.11.0"
+  }
 }
