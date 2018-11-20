@@ -135,7 +135,7 @@ var glio = {
     if ( glio.cookiesManager.getCookie(glio.cookiesManager.names.bottomRight) ) return;
 
     if ( x >= glio.getWidthRightValue() && y >= glio.getBottomHeightValue() ) {
-      glio.statusBottomRight = "active";``
+      glio.statusBottomRight = "active";
       glio.cookiesManager.setCookie(glio.cookiesManager.names.bottomRight);
       callback();
     };
