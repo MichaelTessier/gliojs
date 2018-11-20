@@ -1,14 +1,9 @@
 # glio
-Detects if the mouse of an user leaves the viewport / document borders of your website and when this happens, trigger your callback. <a href="https://github.com/luisvinicius167/gliojs/blob/master/README-PT.md"> Portuguese documentation. </a>
 
-# What is new in this version
+# What is new in this version 2
+* CommonJs support
 * Cookie support with optional expiry date
 * Set a timed delay before the script starts tracking exit intent.
-
-``` 
-config.cookiesExpiration = 30 // days
-config.delay = 5 // seconds
-``` 
 
 <a href="http://luisvinicius167.github.io/gliojs/"> Demo. </a>
 
@@ -44,11 +39,7 @@ config.delay = 5 // seconds
 
 #### Install:
  
-* Npm: ``` npm install gliojs ```
-* Bower:  ``` bower install gliojs ```
-* Cdn: ``` https://cdnjs.cloudflare.com/ajax/libs/gliojs/0.0.7/glio.min.js ```
-
-Import the library glio.min.js in 'dist' folder in your site. ```<script src='glio.min.js'></script>```
+* Npm: ``` npm install gliojs-2 ```
 
 #### Usage:
 The arguments are a Arrays, where the first index is the direction and the second is a callback. <br>
@@ -110,5 +101,7 @@ glio( [ direction, callback ] );
  * ```centerTopHeight```: height of 'top' direction. When the mouse is equal or major this value, the callback is triggered. <i>Default: 10.</i>
  * ```heightTopLeft```: height of 'top-left' direction. When the mouse is equal or major this value, the callback is triggered. <i>Default: 30.</i>
  * ```heightTopRight```: height of 'top-right' direction. When the mouse is equal or major this value, the callback is triggered. <i>Default: 30.</i>
+ * ```cookiesExpiration```: the value in day of the expiration of cookie. <i>Default: 30.</i>
+ * ```delay```: the value in seconds of delay. <i>Default: 0</i>
 
 This software is licensed under the MIT License.
