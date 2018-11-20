@@ -1,6 +1,15 @@
 # glio
 Detects if the mouse of an user leaves the viewport / document borders of your website and when this happens, trigger your callback. <a href="https://github.com/luisvinicius167/gliojs/blob/master/README-PT.md"> Portuguese documentation. </a>
 
+# What is new in this version
+* Cookie support with optional expiry date
+* Set a timed delay before the script starts tracking exit intent.
+
+``` 
+config.cookiesExpiration = 30 // days
+config.delay = 5 // seconds
+``` 
+
 <a href="http://luisvinicius167.github.io/gliojs/"> Demo. </a>
 
 <table><thead>
