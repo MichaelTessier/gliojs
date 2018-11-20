@@ -1,5 +1,5 @@
 {
-  "name": "gliojs",
+  "name": "gliojs-2",
   "version": "0.0.7",
   "description": "Detects if the mouse of a user leaves the viewport / document borders of your website — and when this happens, trigger your callback",
   "main": "dist/glio.js",
@@ -15,7 +15,7 @@
     "move",
     "exit"
   ],
-  "homepage": "http://luisvinicius167.github.io/gliojs",
+  "homepage": "https://github.com/MichaelTessier/gliojs",
   "author": "Michael Tessier",
   "license": "MIT",
   "browserify": {
@@ -24,13 +24,20 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
+    "@babel/core": "7.1.6",
+    "@babel/preset-env": "7.1.6",
     "babelify": "10.0.0",
     "browserify": "16.2.3",
     "watchify": "3.11.0"
   },
   "dependencies": {
     "js-cookie": "2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichaelTessier/gliojs.git" 
+  },
+  "bugs": {
+    "url": "https://github.com/MichaelTessier/gliojs/issues"
   }
 }
