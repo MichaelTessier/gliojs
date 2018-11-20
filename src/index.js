@@ -64,8 +64,8 @@ var glio = {
   loadEvents: function () {
     // Event mousemove just one time
     document.body.addEventListener('mousemove', function( event ) {
-      const pointX = event.clientX;
-      const pointY = event.clientY;
+      var pointX = event.clientX;
+      var pointY = event.clientY;
 
       if ( typeof glio.topLeftFn === "function" &&  glio.statusTopLeft === "inactive" ) {
         glio.callTopleft(pointX, pointY, glio.topLeftFn);
@@ -90,7 +90,7 @@ var glio = {
   },
   // the value of top-right screen, for use when user pass the mouse in the area
   getWidthRightValue: function () {
-    const screenWidthFragment = glio.getScreenWidthFragment();
+    var screenWidthFragment = glio.getScreenWidthFragment();
     return parseInt(( screenWidthFragment * glio.config.screenWidthFragment ) - screenWidthFragment );
   },
   // The value of total screen width are divided in parts
@@ -103,7 +103,7 @@ var glio = {
   },
     // the height value of bottom. this value is the same, independent the direction
   getBottomHeightValue: function () {
-    const screenHeightFragment = glio.getScreenHeightFragment();
+    var screenHeightFragment = glio.getScreenHeightFragment();
     return ( screenHeightFragment * glio.config.screenWidthFragment ) - screenHeightFragment;
   },
   // verify if direction who user is the same of directions who glio have
