@@ -5,7 +5,7 @@
   "main": "dist/glio.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify src/index.js -o dist/glio.js",
+    "build": "browserify -t [ babelify --presets [ @babel/preset-env ] ] src/index.js -o dist/glio.js",
     "dev": "watchify src/index.js -v -o dist/glio.js"
   },
   "keywords": [
@@ -18,7 +18,15 @@
   "homepage": "http://luisvinicius167.github.io/gliojs",
   "author": "Michael Tessier",
   "license": "MIT",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
   "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "babelify": "10.0.0",
     "browserify": "16.2.3",
     "watchify": "3.11.0"
   },
