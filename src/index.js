@@ -1,6 +1,6 @@
-const cookie = require('js-cookie');
+var cookie = require('js-cookie');
 
-const glio = {
+var glio = {
   /**
    * Initial Configuration
    * you can change the values before init method
