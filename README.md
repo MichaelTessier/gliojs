@@ -1,6 +1,7 @@
 # glio
 
-# What is new in this version 2
+## What is new in this version 2
+
 * CommonJs support
 * Cookie support with optional expiry date
 * Set a timed delay before the script starts tracking exit intent.
@@ -23,34 +24,41 @@
 </tr>
 </tbody></table>
 
-#### Reasons for use:
+### Reasons for use
+
 * Increase your conversion rates!
 * Give visitors reasons to stay!
 * Grab your users’ attention!
 
-#### Articles about Exit-popups:
+#### Articles about Exit-popups
+
 * <a href="http://conversionsciences.com/blog/7-best-practices-using-exit-intent-popovers/">7 Best Practices for Using Exit-Intent Popovers, Popups</a>
 * <a href="http://blog.getrooster.com/5-scientific-reasons-exit-popups-freaking-effective/">5 Scientific Reasons Exit Popups Are So Freaking Effective</a>
 
-#### Install:
- 
-* Npm: ``` npm install gliojs-2 ```
+#### Install
 
-#### Usage:
-The arguments are a Arrays, where the first index is the direction and the second is a callback. <br>
-```javascript 
+* Npm: ```npm install gliojs-2```
+
+#### Usage
+
+The arguments are a Arrays, where the first index is the direction and the second is a callback.
+
+```javascript
 glio( [ direction, callback ] );
 ```
 
-#### 5 Directions:
+#### 5 Directions
+
 * top
 * top-left
 * top-right
 * bottom-left
 * bottom-right
 
-#### Example:
+#### Example
+
 * top-left and top-right
+
 ```javascript
     glio.init(
       [ 'top-left', function () {
@@ -65,6 +73,7 @@ glio( [ direction, callback ] );
 ```
 
 * all directions
+
 ```javascript
   glio.init(
     [ 'top', function () {
@@ -84,19 +93,20 @@ glio( [ direction, callback ] );
       }
     ],
     [ 'bottom-right', function () {
-        alert('this is bottom-right'); 
+        alert('this is bottom-right');
       }
-    ] 
+    ]
   );
 ```
 
-#### Configurations:
-  ```glio.config.key = value;``` Set the configuration before the <i>init</i>. 
- * ```screenWidthFragment```: the quantity of parts the height and width screen will be divided. <i>Default: 12.</i>
- * ```centerTopHeight```: height of 'top' direction. When the mouse is equal or major this value, the callback is triggered. <i>Default: 10.</i>
- * ```heightTopLeft```: height of 'top-left' direction. When the mouse is equal or major this value, the callback is triggered. <i>Default: 30.</i>
- * ```heightTopRight```: height of 'top-right' direction. When the mouse is equal or major this value, the callback is triggered. <i>Default: 30.</i>
- * ```cookiesExpiration```: the value in day of the expiration of cookie. <i>Default: 30.</i>
- * ```delay```: the value in seconds of delay. <i>Default: 0</i>
+#### Configurations
+
+* ```glio.config.key = value;``` Set the configuration before the init.
+* ```screenWidthFragment```: the quantity of parts the height and width screen will be divided. Default: 12.
+* ```centerTopHeight```: height of 'top' direction. When the mouse is equal or major this value, the callback is triggered. Default: 10.
+* ```heightTopLeft```: height of 'top-left' direction. When the mouse is equal or major this value, the callback is triggered. Default: 30.
+* ```heightTopRight```: height of 'top-right' direction. When the mouse is equal or major this value, the callback is triggered. Default: 30.
+* ```cookiesExpiration```: the value in day of the expiration of cookie. Default: 30.
+* ```delay```: the value in seconds of delay. Default: 0
 
 This software is licensed under the MIT License.
