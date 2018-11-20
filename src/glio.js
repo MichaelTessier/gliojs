@@ -1,6 +1,6 @@
-var cookie = require('js-cookie');
+const cookie = require('js-cookie');
 
-var glio = {
+const glio = {
   /**
    * Initial Configuration
    * you can change the values before init method
@@ -11,8 +11,8 @@ var glio = {
     centerTopHeight: 10, // the value of height to trigger a callback on center-top
     heightTopLeft: 30,  // the value of height when top-left direction is set
     heightTopRight: 30, // the value of height when top-right direction is set
-    cookiesExpiration: 30, 
-    delay: 0
+    cookiesExpiration: 30, // the value in day of the expiration of cookie
+    delay: 0 // the value in seconds of delay
   },
   cookiesManager: {
     names: {
@@ -23,10 +23,10 @@ var glio = {
       bottomRight: 'glioBottomRight'
     },
     setCookie: function (name) {
-      cookie.set(name, true, { expires: glio.config.cookiesExpiration })
+      cookie.set(name, true, { expires: glio.config.cookiesExpiration });
     },
     getCookie: function (name) {
-      return cookie.get(name)
+      return cookie.get(name);
     }
   },
   // glio methods status
@@ -58,15 +58,14 @@ var glio = {
     });
 
     var loadEventsDelay = typeof glio.config.delay === 'number' ? glio.config.delay : 0
-    setTimeout( glio.loadEvents, loadEventsDelay * 1000);
+    setTimeout(glio.loadEvents, loadEventsDelay * 1000);
     
   },
   loadEvents: function () {
     // Event mousemove just one time
     document.body.addEventListener('mousemove', function( event ) {
-      var pointX = event.clientX
-        , pointY = event.clientY
-      ;
+      const pointX = event.clientX;
+      const pointY = event.clientY;
 
       if ( typeof glio.topLeftFn === "function" &&  glio.statusTopLeft === "inactive" ) {
         glio.callTopleft(pointX, pointY, glio.topLeftFn);
@@ -91,39 +90,25 @@ var glio = {
   },
   // the value of top-right screen, for use when user pass the mouse in the area
   getWidthRightValue: function () {
-    var screenWidthFragment = glio.getScreenWidthFragment()
-      , topRightValue = ( screenWidthFragment * glio.config.screenWidthFragment ) - screenWidthFragment
-    ;
-    return parseInt(topRightValue);
-  },
-  // get the value of top height
-  getTopHeight: function () {
-    var sHeight = 50;
-    return sHeight;
+    const screenWidthFragment = glio.getScreenWidthFragment();
+    return parseInt(( screenWidthFragment * glio.config.screenWidthFragment ) - screenWidthFragment );
   },
   // The value of total screen width are divided in parts
   getScreenWidthFragment: function () {
-    var screenWidthFragment = (parseInt(window.innerWidth) / glio.config.screenWidthFragment);
-    return screenWidthFragment;
+    return (parseInt(window.innerWidth) / glio.config.screenWidthFragment);
   },
   // The value of total screen height are divided in parts
   getScreenHeightFragment: function () {
-    var screenHeightFragment = (parseInt(window.innerHeight) / glio.config.screenWidthFragment);
-    return screenHeightFragment;
+    return (parseInt(window.innerHeight) / glio.config.screenWidthFragment);
   },
     // the height value of bottom. this value is the same, independent the direction
-  getBottomHeightValue: function ( ) {
-    var screenHeightFragment = glio.getScreenHeightFragment()
-      , bottomRightValue = ( screenHeightFragment * glio.config.screenWidthFragment ) - screenHeightFragment
-    ;
-    return bottomRightValue;
+  getBottomHeightValue: function () {
+    const screenHeightFragment = glio.getScreenHeightFragment();
+    return ( screenHeightFragment * glio.config.screenWidthFragment ) - screenHeightFragment;
   },
   // verify if direction who user is the same of directions who glio have
   getDirection: function ( directionUser, direction ) {
-    if ( directionUser === direction ) {
-      return true;
-    };
-    return false;
+    return directionUser === direction;
   },
   /*
     * Functions of each direction
@@ -140,7 +125,6 @@ var glio = {
   },
   callTopRight: function ( x, y, callback ) {
     if ( glio.cookiesManager.getCookie(glio.cookiesManager.names.topRight) ) return;
-
     if ( x > glio.getWidthRightValue() && y <= glio.config.heightTopRight ) {
       glio.statusTopRight = "active";
       glio.cookiesManager.setCookie(glio.cookiesManager.names.topRight);
@@ -151,7 +135,7 @@ var glio = {
     if ( glio.cookiesManager.getCookie(glio.cookiesManager.names.bottomRight) ) return;
 
     if ( x >= glio.getWidthRightValue() && y >= glio.getBottomHeightValue() ) {
-      glio.statusBottomRight = "active";
+      glio.statusBottomRight = "active";``
       glio.cookiesManager.setCookie(glio.cookiesManager.names.bottomRight);
       callback();
     };

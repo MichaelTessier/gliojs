@@ -166,21 +166,27 @@
 }));
 
 },{}],2:[function(require,module,exports){
-var cookie = require('js-cookie');
+const cookie = require('js-cookie');
 
-var glio = {
+const glio = {
   /**
    * Initial Configuration
    * you can change the values before init method
    * glio.config.key = value;
    **/
   config: {
-    screenWidthFragment: 12,  // the width of screen : 12
-    centerTopHeight: 10, // the value of height to trigger a callback on center-top
-    heightTopLeft: 30,  // the value of height when top-left direction is set
-    heightTopRight: 30, // the value of height when top-right direction is set
-    cookiesExpiration: 30, 
-    delay: 0
+    screenWidthFragment: 12,
+    // the width of screen : 12
+    centerTopHeight: 10,
+    // the value of height to trigger a callback on center-top
+    heightTopLeft: 30,
+    // the value of height when top-left direction is set
+    heightTopRight: 30,
+    // the value of height when top-right direction is set
+    cookiesExpiration: 30,
+    // the value in day of the expiration of cookie
+    delay: 0 // the value in seconds of delay
+
   },
   cookiesManager: {
     names: {
@@ -191,10 +197,12 @@ var glio = {
       bottomRight: 'glioBottomRight'
     },
     setCookie: function (name) {
-      cookie.set(name, true, { expires: glio.config.cookiesExpiration })
+      cookie.set(name, true, {
+        expires: glio.config.cookiesExpiration
+      });
     },
     getCookie: function (name) {
-      return cookie.get(name)
+      return cookie.get(name);
     }
   },
   // glio methods status
@@ -203,182 +211,165 @@ var glio = {
   statusBottomLeft: "inactive",
   statusBottomRight: "inactive",
   statusTop: "inactive",
-  init: function ( ) {
+  init: function () {
     // return a Array with the methods
-    glio.methods = Array.prototype.slice.call(arguments);
-    // get the direction and your correspondent callback
+    glio.methods = Array.prototype.slice.call(arguments); // get the direction and your correspondent callback
+
     Array.prototype.forEach.call(glio.methods, function (index) {
-      if ( glio.getDirection( index[0], "top-left" ) ) {
+      if (glio.getDirection(index[0], "top-left")) {
         glio.topLeftFn = glio.trigger(index[1]);
-      }
-      else if ( glio.getDirection( index[0], "top-right" ) ) {
+      } else if (glio.getDirection(index[0], "top-right")) {
         glio.topRightFn = glio.trigger(index[1]);
-      }
-      else if ( glio.getDirection( index[0], "bottom-right" ) ) {
+      } else if (glio.getDirection(index[0], "bottom-right")) {
         glio.bottomRightFn = glio.trigger(index[1]);
-      }
-      else if ( glio.getDirection( index[0], "bottom-left" ) ) {
+      } else if (glio.getDirection(index[0], "bottom-left")) {
         glio.bottomLeftFn = glio.trigger(index[1]);
-      }
-      else if ( glio.getDirection( index[0], "top" ) ) {
+      } else if (glio.getDirection(index[0], "top")) {
         glio.TopFn = glio.trigger(index[1]);
       }
     });
-
-    var loadEventsDelay = typeof glio.config.delay === 'number' ? glio.config.delay : 0
-    setTimeout( glio.loadEvents, loadEventsDelay * 1000);
-    
+    var loadEventsDelay = typeof glio.config.delay === 'number' ? glio.config.delay : 0;
+    setTimeout(glio.loadEvents, loadEventsDelay * 1000);
   },
   loadEvents: function () {
     // Event mousemove just one time
-    document.body.addEventListener('mousemove', function( event ) {
-      var pointX = event.clientX
-        , pointY = event.clientY
-      ;
+    document.body.addEventListener('mousemove', function (event) {
+      const pointX = event.clientX;
+      const pointY = event.clientY;
 
-      if ( typeof glio.topLeftFn === "function" &&  glio.statusTopLeft === "inactive" ) {
+      if (typeof glio.topLeftFn === "function" && glio.statusTopLeft === "inactive") {
         glio.callTopleft(pointX, pointY, glio.topLeftFn);
       }
-      if (typeof glio.topRightFn === "function" && glio.statusTopRight === "inactive" ) {
+
+      if (typeof glio.topRightFn === "function" && glio.statusTopRight === "inactive") {
         glio.callTopRight(pointX, pointY, glio.topRightFn);
       }
-      if (typeof glio.bottomLeftFn === "function" && glio.statusBottomLeft === "inactive" ) {
+
+      if (typeof glio.bottomLeftFn === "function" && glio.statusBottomLeft === "inactive") {
         glio.callBottomLeft(pointX, pointY, glio.bottomLeftFn);
       }
-      if (typeof glio.bottomRightFn === "function" && glio.statusBottomRight === "inactive" ) {
+
+      if (typeof glio.bottomRightFn === "function" && glio.statusBottomRight === "inactive") {
         glio.callBottomRight(pointX, pointY, glio.bottomRightFn);
       }
-      if (typeof glio.TopFn === "function" && glio.statusTop === "inactive" ) {
+
+      if (typeof glio.TopFn === "function" && glio.statusTop === "inactive") {
         glio.callTop(pointX, pointY, glio.TopFn);
       }
     });
   },
   // return a callback who will pass like argument to other function
-  trigger: function ( callback ) {
+  trigger: function (callback) {
     return callback;
   },
   // the value of top-right screen, for use when user pass the mouse in the area
   getWidthRightValue: function () {
-    var screenWidthFragment = glio.getScreenWidthFragment()
-      , topRightValue = ( screenWidthFragment * glio.config.screenWidthFragment ) - screenWidthFragment
-    ;
-    return parseInt(topRightValue);
-  },
-  // get the value of top height
-  getTopHeight: function () {
-    var sHeight = 50;
-    return sHeight;
+    const screenWidthFragment = glio.getScreenWidthFragment();
+    return parseInt(screenWidthFragment * glio.config.screenWidthFragment - screenWidthFragment);
   },
   // The value of total screen width are divided in parts
   getScreenWidthFragment: function () {
-    var screenWidthFragment = (parseInt(window.innerWidth) / glio.config.screenWidthFragment);
-    return screenWidthFragment;
+    return parseInt(window.innerWidth) / glio.config.screenWidthFragment;
   },
   // The value of total screen height are divided in parts
   getScreenHeightFragment: function () {
-    var screenHeightFragment = (parseInt(window.innerHeight) / glio.config.screenWidthFragment);
-    return screenHeightFragment;
+    return parseInt(window.innerHeight) / glio.config.screenWidthFragment;
   },
-    // the height value of bottom. this value is the same, independent the direction
-  getBottomHeightValue: function ( ) {
-    var screenHeightFragment = glio.getScreenHeightFragment()
-      , bottomRightValue = ( screenHeightFragment * glio.config.screenWidthFragment ) - screenHeightFragment
-    ;
-    return bottomRightValue;
+  // the height value of bottom. this value is the same, independent the direction
+  getBottomHeightValue: function () {
+    const screenHeightFragment = glio.getScreenHeightFragment();
+    return screenHeightFragment * glio.config.screenWidthFragment - screenHeightFragment;
   },
   // verify if direction who user is the same of directions who glio have
-  getDirection: function ( directionUser, direction ) {
-    if ( directionUser === direction ) {
-      return true;
-    };
-    return false;
+  getDirection: function (directionUser, direction) {
+    return directionUser === direction;
   },
+
   /*
     * Functions of each direction
     */
-  callTopleft: function ( x, y, callback ) {
+  callTopleft: function (x, y, callback) {
+    if (glio.cookiesManager.getCookie(glio.cookiesManager.names.topLeft)) return;
 
-    if ( glio.cookiesManager.getCookie(glio.cookiesManager.names.topLeft) ) return;
-
-    if ( x <= glio.getScreenWidthFragment() && y <= glio.config.heightTopLeft ) {
+    if (x <= glio.getScreenWidthFragment() && y <= glio.config.heightTopLeft) {
       glio.statusTopLeft = "active";
       glio.cookiesManager.setCookie(glio.cookiesManager.names.topLeft);
       callback();
-    };
-  },
-  callTopRight: function ( x, y, callback ) {
-    if ( glio.cookiesManager.getCookie(glio.cookiesManager.names.topRight) ) return;
+    }
 
-    if ( x > glio.getWidthRightValue() && y <= glio.config.heightTopRight ) {
+    ;
+  },
+  callTopRight: function (x, y, callback) {
+    if (glio.cookiesManager.getCookie(glio.cookiesManager.names.topRight)) return;
+
+    if (x > glio.getWidthRightValue() && y <= glio.config.heightTopRight) {
       glio.statusTopRight = "active";
       glio.cookiesManager.setCookie(glio.cookiesManager.names.topRight);
       callback();
-    };         
-  },
-  callBottomRight: function ( x, y, callback ) {
-    if ( glio.cookiesManager.getCookie(glio.cookiesManager.names.bottomRight) ) return;
+    }
 
-    if ( x >= glio.getWidthRightValue() && y >= glio.getBottomHeightValue() ) {
+    ;
+  },
+  callBottomRight: function (x, y, callback) {
+    if (glio.cookiesManager.getCookie(glio.cookiesManager.names.bottomRight)) return;
+
+    if (x >= glio.getWidthRightValue() && y >= glio.getBottomHeightValue()) {
       glio.statusBottomRight = "active";
+      ``;
       glio.cookiesManager.setCookie(glio.cookiesManager.names.bottomRight);
       callback();
-    };
-  },
-  callBottomLeft: function ( x, y, callback ) {
-    if ( glio.cookiesManager.getCookie(glio.cookiesManager.names.bottomLeft) ) return;
+    }
 
-    if ( x <= glio.getScreenWidthFragment() && y >= glio.getBottomHeightValue() ) {
+    ;
+  },
+  callBottomLeft: function (x, y, callback) {
+    if (glio.cookiesManager.getCookie(glio.cookiesManager.names.bottomLeft)) return;
+
+    if (x <= glio.getScreenWidthFragment() && y >= glio.getBottomHeightValue()) {
       glio.statusBottomLeft = "active";
       glio.cookiesManager.setCookie(glio.cookiesManager.names.bottomLeft);
       callback();
-    };
+    }
+
+    ;
   },
   // array to use in the callTop
   positionsTopY: [],
-  callTop: function (x, y, callback ) {
-    if ( glio.cookiesManager.getCookie(glio.cookiesManager.names.top) ) return;
+  callTop: function (x, y, callback) {
+    if (glio.cookiesManager.getCookie(glio.cookiesManager.names.top)) return;
 
-    if ( y > (glio.config.centerTopHeight + 1)) {
+    if (y > glio.config.centerTopHeight + 1) {
       glio.positionsTopY.push(y);
     }
-    if ( x > glio.getScreenWidthFragment() && x < glio.getWidthRightValue() ) {
+
+    if (x > glio.getScreenWidthFragment() && x < glio.getWidthRightValue()) {
       // check if the user mouse direction is bottom to top
-      if ( y <= glio.config.centerTopHeight && glio.positionsTopY[0] > glio.config.centerTopHeight ) {
+      if (y <= glio.config.centerTopHeight && glio.positionsTopY[0] > glio.config.centerTopHeight) {
         glio.statusTop = "active";
         glio.cookiesManager.setCookie(glio.cookiesManager.names.top);
         callback();
       }
     }
   }
-}
-
+};
 module.exports = {
   init: glio.init,
   config: glio.config
-}
+};
+
 },{"js-cookie":1}],3:[function(require,module,exports){
 var glio = require('./glio');
 
-glio.init(
-  [ 'top', function () {
-      alert('this is top.');
-    }
-  ],
-  [ 'top-left', function () {
-      alert('this is top-left');
-    }
-  ],
-  [ 'top-right', function () {
-      alert('this is top-right');
-    }
-  ],
-  [ 'bottom-left', function () {
-      alert('this is bottom-left');
-    }
-  ],
-  [ 'bottom-right', function () {
-      alert('this is bottom-right'); 
-    }
-  ] 
-);
+glio.init(['top', function () {
+  alert('this is top.');
+}], ['top-left', function () {
+  alert('this is top-left');
+}], ['top-right', function () {
+  alert('this is top-right');
+}], ['bottom-left', function () {
+  alert('this is bottom-left');
+}], ['bottom-right', function () {
+  alert('this is bottom-right');
+}]);
+
 },{"./glio":2}]},{},[3]);
