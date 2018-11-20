@@ -5,8 +5,6 @@
 * Cookie support with optional expiry date
 * Set a timed delay before the script starts tracking exit intent.
 
-<a href="http://luisvinicius167.github.io/gliojs/"> Demo. </a>
-
 <table><thead>
 <tr>
 <th align="center"><a href="https://camo.githubusercontent.com/4e44a98f6e0c0c6f9768b18d2c9f809a147896ce/68747470733a2f2f63646e302e69636f6e66696e6465722e636f6d2f646174612f69636f6e732f6a666b2f3531322f6368726f6d652d3531322e706e67" target="_blank"><img src="https://camo.githubusercontent.com/4e44a98f6e0c0c6f9768b18d2c9f809a147896ce/68747470733a2f2f63646e302e69636f6e66696e6465722e636f6d2f646174612f69636f6e732f6a666b2f3531322f6368726f6d652d3531322e706e67" width="50px" height="50px" alt="Chrome logo" data-canonical-src="https://cdn0.iconfinder.com/data/icons/jfk/512/chrome-512.png" style="max-width:100%;"></a></th>
@@ -29,9 +27,6 @@
 * Increase your conversion rates!
 * Give visitors reasons to stay!
 * Grab your users’ attention!
-
-#### Cases:
-* if you are using gliojs, paste your project <a href="https://github.com/luisvinicius167/gliojs/issues/4"> here</a>.
 
 #### Articles about Exit-popups:
 * <a href="http://conversionsciences.com/blog/7-best-practices-using-exit-intent-popovers/">7 Best Practices for Using Exit-Intent Popovers, Popups</a>
