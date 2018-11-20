@@ -24,13 +24,20 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
+    "@babel/core": "7.1.6",
+    "@babel/preset-env": "7.1.6",
     "babelify": "10.0.0",
     "browserify": "16.2.3",
     "watchify": "3.11.0"
   },
   "dependencies": {
     "js-cookie": "2.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MichaelTessier/gliojs.git" 
+  },
+  "bugs": {
+    "url": "https://github.com/MichaelTessier/gliojs/issues"
   }
 }
