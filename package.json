@@ -1,6 +1,6 @@
 {
   "name": "gliojs-2",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Detects if the mouse of a user leaves the viewport / document borders of your website — and when this happens, trigger your callback",
   "main": "src/index.js",
   "scripts": {
